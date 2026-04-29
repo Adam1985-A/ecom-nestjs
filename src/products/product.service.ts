@@ -2,8 +2,8 @@ import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, ILike } from 'typeorm';
 import type { FindOptionsWhere } from "typeorm";
-import { ProductEntity } from '../products/product.entity.js';
-import { CreateProductDto, UpdateProductDto, ProductQueryDto } from '../products/product.dto.js';
+import { ProductEntity } from './product.entity';
+import { CreateProductDto, UpdateProductDto, ProductQueryDto } from './product.dto';
 
 @Injectable()
 export class ProductService {
@@ -61,8 +61,12 @@ export class ProductService {
 }
 
   async remove(id: string): Promise<{ message: string }> {
-    await this.findOne(id);
-   
+    const result = await this.productsRepo.delete(id);
+
+  if (result.affected === 0) {
+    throw new UnauthorizedException('Product not found');
+  }
+
     return { message: 'Product removed' };
   }
 

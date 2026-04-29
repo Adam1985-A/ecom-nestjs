@@ -2,22 +2,29 @@ import {
   Controller, Get, Patch, Delete, Body, Param,
   UseGuards, Query,
 } from '@nestjs/common';
-import { AdminService } from '../admin/admin.service.js';
-import { JwtAuthGuard } from '../common/jwt-auth.guard.js';
-import { RolesGuard } from '../common/role.guard.js';
-import { RoleDecorator } from '../common/role.decorator.js';
-import { UpdateOrderStatusDto } from '../orders/order.dto.js';
-import { ProductService } from '../products/product.service.js';
-import { CreateProductDto, UpdateProductDto } from '../products/product.dto.js';
+import { AdminService } from './admin.service';
+import { JwtAuthGuard } from '../common/jwt-auth.guard';
+import { RolesGuard } from '../common/role.guard';
+import { RoleDecorator } from '../common/role.decorator';
+import { UpdateOrderStatusDto } from '../orders/order.dto';
+import { ProductService } from '../products/product.service';
+import { CreateProductDto, UpdateProductDto } from '../products/product.dto';
+import { UserRole }from '../users/user.entity';
 
 @Controller('admin')
 @UseGuards(JwtAuthGuard, RolesGuard)
-@RoleDecorator('admin')
+
 export class AdminController {
   constructor(
     private adminService: AdminService,
-    private productsService: ProductService,
+    private productService: ProductService,
   ) {}
+
+  @RoleDecorator(UserRole.ADMIN)
+@Get("admin-test")
+testAdmin(){
+  return 'Admin access granted';
+}
 
   // ── Dashboard ──────────────────────────────────────────
   @Get('dashboard')
@@ -45,17 +52,17 @@ export class AdminController {
   // ── Products ───────────────────────────────────────────
   @Get('products')
   getProducts(@Query('page') page = 1, @Query('limit') limit = 20) {
-    return this.productsService.findAll({ page, limit });
+    return this.productService.findAll({ page, limit });
   }
 
   @Patch('products/:id')
   updateProduct(@Param('id') id: string, @Body() dto: UpdateProductDto) {
-    return this.productsService.update(id, dto);
+    return this.productService.update(id, dto);
   }
 
   @Delete('products/:id')
   deleteProduct(@Param('id') id: string) {
-    return this.productsService.remove(id);
+    return this.productService.remove(id);
   }
 
   // ── Users ──────────────────────────────────────────────

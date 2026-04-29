@@ -1,37 +1,42 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { AuthModule } from '../auth/auth.module.js';
-import { UserModule } from '../users/user.module.js';
-import { ProductModule } from '../products/product.module.js';
-import { CategoryModule } from '../categories/category.module.js';
-import { CartModule } from '../cart/cart.module.js';
-import { OrderModule } from '../orders/order.module.js';
-import { PaymentModule } from '../payments/payment.module.js';
-import { ReviewModule } from '../reviews/review.module.js';
-import { WishlistModule } from '../wishlist/wishlist.module.js';
-import { ShippingModule } from '../shipping/shipping.module.js';
-import { AdminModule } from '../admin/admin.module.js';
-import { DatabaseModule } from '../module/database.module.js';
+import { AuthModule } from '../auth/auth.module';
+import { UserModule } from '../users/user.module';
+import { ProductModule } from '../products/product.module';
+import { CategoryModule } from '../categories/category.module';
+import { CartModule } from '../cart/cart.module';
+import { OrderModule } from '../orders/order.module';
+import { PaymentModule } from '../payments/payment.module';
+import { ReviewModule } from '../reviews/review.module';
+import { WishlistModule } from '../wishlist/wishlist.module';
+import { ShippingModule } from '../shipping/shipping.module';
+import { AdminModule } from '../admin/admin.module';
+import { DatabaseModule } from './database.module';
 
 // Entities
-import { UserEntity } from '../users/user.entity.js';
-import { ProductEntity } from '../products/product.entity.js';
-import { CategoryEntity } from '../categories/category.entity.js';
-import { CartEntity } from '../cart/cart.entity.js';
-import { CartItem } from '../cart//cart-item.entity.js';
-import { OrderEntity } from '../orders/order.entity.js';
-import { OrderItem } from '../orders/order-item.entity.js';
-import { PaymentEntity } from '../payments/payment.entity.js';
-import { ReviewEntity } from '../reviews/review.entity.js';
-import { WishlistItem } from '../wishlist/wishlist-item.entity.js';
-import { ShippingAddress } from '../shipping/shipping-address.entity.js';
-import { DatabaseService } from '../database/database-service.js';
+import { UserEntity } from '../users/user.entity';
+import { ProductEntity } from '../products/product.entity';
+import { CategoryEntity } from '../categories/category.entity';
+import { CartEntity } from '../cart/cart.entity';
+import { CartItem } from '../cart//cart-item.entity';
+import { OrderEntity } from '../orders/order.entity';
+import { OrderItem } from '../orders/order-item.entity';
+import { PaymentEntity } from '../payments/payment.entity';
+import { ReviewEntity } from '../reviews/review.entity';
+import { WishlistItem } from '../wishlist/wishlist-item.entity';
+import { ShippingAddress } from '../shipping/shipping-address.entity';
+import { DatabaseService } from '../database/database-service';
 
 @Module({
   imports: [
+    
+    ConfigModule.forRoot({
+      isGlobal: true,
+    }),
    
     TypeOrmModule.forRoot({
+        
        type: 'postgres',
         host: 'localhost',
         port: 5432,
@@ -44,7 +49,7 @@ import { DatabaseService } from '../database/database-service.js';
         ],
         autoLoadEntities: true,
         synchronize: true,
-        logging: true,
+        logging: false,
       }),
   
     AuthModule,

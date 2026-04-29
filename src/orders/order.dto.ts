@@ -1,5 +1,5 @@
 import { IsString, IsOptional, IsEnum } from 'class-validator';
-import { OrderStatus } from './order.entity.js';
+import { OrderStatus } from './order.entity';
 
 export class CreateOrderDto {
   @IsString()

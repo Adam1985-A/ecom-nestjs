@@ -1,9 +1,9 @@
 import { Controller, Get, Post, Patch, Delete, Body, Param, UseGuards } from '@nestjs/common';
-import { CategoryService } from './category.service.js';
-import { CreateCategoryDto, UpdateCategoryDto } from '../categories/category.dto.js';
-import { JwtAuthGuard } from '../common/jwt-auth.guard.js';
-import { RolesGuard } from '../common/role.guard.js';
-import { RoleDecorator } from '../common/role.decorator.js';
+import { CategoryService } from './category.service';
+import { CreateCategoryDto, UpdateCategoryDto } from './category.dto';
+import { JwtAuthGuard } from '../common/jwt-auth.guard';
+import { RolesGuard } from '../common/role.guard';
+import { RoleDecorator } from '../common/role.decorator';
 
 @Controller('categories')
 export class CategoryController {
@@ -14,7 +14,14 @@ export class CategoryController {
     return this.categoriesService.findAll();
   }
 
+  @Get(':id')
+  @UseGuards(JwtAuthGuard, RolesGuard)
+findOne(@Param('id') id: string) {
+  return this.categoriesService.findOne(id);
+}
+
   @Get(':id/products')
+  @UseGuards(JwtAuthGuard, RolesGuard)
   findProducts(@Param('id') id: string) {
     return this.categoriesService.findProducts(id);
   }

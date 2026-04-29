@@ -3,11 +3,11 @@ import {
 } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { OrderEntity, OrderStatus } from '../orders/order.entity.js';
-import { OrderItem } from '../orders/order-item.entity.js';
-import { CartService } from '../cart/cart.service.js';
-import { ProductService } from '../products/product.service.js';
-import { CreateOrderDto, UpdateOrderStatusDto } from '../orders/order.dto.js';
+import { OrderEntity, OrderStatus } from './order.entity';
+import { OrderItem } from './order-item.entity';
+import { CartService } from '../cart/cart.service';
+import { ProductService } from '../products/product.service';
+import { CreateOrderDto, UpdateOrderStatusDto } from './order.dto';
 
 @Injectable()
 export class OrderService {

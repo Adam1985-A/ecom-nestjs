@@ -2,8 +2,8 @@ import {
   Entity, PrimaryGeneratedColumn, Column,
   ManyToOne, JoinColumn, CreateDateColumn,
 } from 'typeorm';
-import { CartEntity } from '../cart/cart.entity.js';
-import { ProductEntity } from '../products/product.entity.js';
+import { CartEntity } from '../cart/cart.entity';
+import { ProductEntity } from '../products/product.entity';
 
 @Entity('cart_items')
 export class CartItem {

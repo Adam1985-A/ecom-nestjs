@@ -1,10 +1,10 @@
  import {
   Controller, Get, Post, Patch, Delete,Body, Param, UseGuards, } from '@nestjs/common';
-import {AddToCartDto, UpdateCartItemDto } from '../cart/cart.dto.js';
-import { CartService } from '../cart/cart.service.js';
-import { JwtAuthGuard } from '../common/jwt-auth.guard.js';
-import { GetUser } from '../common/get-user.decorator.js';
-import { UserEntity } from '../users/user.entity.js';
+import {AddToCartDto, UpdateCartItemDto } from './cart.dto';
+import { CartService } from './cart.service';
+import { JwtAuthGuard } from '../common/jwt-auth.guard';
+import { GetUser } from '../common/get-user.decorator';
+import { UserEntity } from '../users/user.entity';
 
 @Controller('cart')
 @UseGuards(JwtAuthGuard)

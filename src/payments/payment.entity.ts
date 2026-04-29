@@ -2,8 +2,8 @@ import {
   Entity, PrimaryGeneratedColumn, Column,
   ManyToOne, JoinColumn, CreateDateColumn, UpdateDateColumn,
 } from 'typeorm';
-import { UserEntity } from '../users/user.entity.js';
-import { OrderEntity } from '../orders/order.entity.js';
+import { UserEntity } from '../users/user.entity';
+import { OrderEntity } from '../orders/order.entity';
 
 export enum PaymentStatus {
   PENDING = 'pending',

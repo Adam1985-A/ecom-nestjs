@@ -1,9 +1,9 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { WishlistItem } from '../wishlist/wishlist-item.entity.js';
-import { WishlistService } from '../wishlist/wishlist.service.js';
-import { WishlistController } from '../wishlist/wishlist.controller.js';
-import { ProductModule } from '../products/product.module.js';
+import { WishlistItem } from './wishlist-item.entity';
+import { WishlistService } from './wishlist.service';
+import { WishlistController } from './wishlist.controller';
+import { ProductModule } from '../products/product.module';
 
 @Module({
   imports: [TypeOrmModule.forFeature([WishlistItem]), ProductModule],

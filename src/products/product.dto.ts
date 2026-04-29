@@ -1,4 +1,4 @@
-import { IsString, IsNumber, IsOptional, Min } from 'class-validator';
+import { IsString, IsNumber, IsOptional, Min, IsUUID } from 'class-validator';
 import { Type } from 'class-transformer';
 
 // CREATE PRODUCT DTO
@@ -15,6 +15,12 @@ export class CreateProductDto {
   @IsOptional()
   @IsString()
   description?: string;
+
+  @IsNumber()
+  stock: number;
+
+  @IsUUID()
+  categoryId: string;
 }
 
 // UPDATE PRODUCT DTO

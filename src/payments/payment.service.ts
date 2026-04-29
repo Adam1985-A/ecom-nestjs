@@ -4,10 +4,10 @@ import {
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { ConfigService } from '@nestjs/config';
-import { PaymentEntity, PaymentStatus, PaymentProvider } from './payment.entity.js';
-import { OrderService } from '../orders/order.service.js';
-import { InitializePaymentDto } from './payment.dto.js';
-import { OrderStatus } from '../orders/order.entity.js';
+import { PaymentEntity, PaymentStatus, PaymentProvider } from './payment.entity';
+import { OrderService } from '../orders/order.service';
+import { InitializePaymentDto } from './payment.dto';
+import { OrderStatus } from '../orders/order.entity';
 import { v4 as uuidv4 } from 'uuid';
 
 @Injectable()
@@ -16,7 +16,7 @@ export class PaymentService {
   private readonly paystackBaseUrl: string;
 
   constructor(
-    @InjectRepository(Payment) private paymentsRepo: Repository<Payment>,
+    @InjectRepository(PaymentEntity) private paymentsRepo: Repository<PaymentEntity>,
     private orderService: OrderService,
     private configService: ConfigService,
   ) {
@@ -114,7 +114,7 @@ export class PaymentService {
     return { received: true };
   }
 
-  async getUserPayments(userId: string): Promise<Payment[]> {
+  async getUserPayments(userId: string): Promise<PaymentEntity[]> {
     return this.paymentsRepo.find({
       where: { userId },
       order: { createdAt: 'DESC' },
