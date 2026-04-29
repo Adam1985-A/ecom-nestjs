@@ -1,11 +1,11 @@
 import {
   Controller, Get, Post, Body, Param, UseGuards, Query,
 } from '@nestjs/common';
-import { OrderService } from '../orders/order.service.js';
-import { CreateOrderDto } from '../orders/order.dto.js';
-import { JwtAuthGuard } from '../common/jwt-auth.guard.js';
-import { GetUser } from '../common/get-user.decorator.js';
-import { UserEntity } from '../users/user.entity.js';
+import { OrderService } from './order.service';
+import { CreateOrderDto } from './order.dto';
+import { JwtAuthGuard } from '../common/jwt-auth.guard';
+import { GetUser } from '../common/get-user.decorator';
+import { UserEntity } from '../users/user.entity';
 
 @Controller('orders')
 @UseGuards(JwtAuthGuard)

@@ -1,8 +1,8 @@
 import { Controller, Get, Post, Delete, Body, Param, UseGuards } from '@nestjs/common';
-import { WishlistService, AddWishlistDto } from '../wishlist/wishlist.service.js';
-import { JwtAuthGuard } from '../common/jwt-auth.guard.js';
-import { GetUser } from '../common/get-user.decorator.js';
-import { UserEntity } from '../users/user.entity.js';
+import { WishlistService, AddWishlistDto } from './wishlist.service';
+import { JwtAuthGuard } from '../common/jwt-auth.guard';
+import { GetUser } from '../common/get-user.decorator';
+import { UserEntity } from '../users/user.entity';
 
 @Controller('wishlist')
 @UseGuards(JwtAuthGuard)

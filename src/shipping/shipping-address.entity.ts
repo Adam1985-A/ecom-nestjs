@@ -2,7 +2,7 @@ import {
   Entity, PrimaryGeneratedColumn, Column,
   ManyToOne, JoinColumn, CreateDateColumn, UpdateDateColumn,
 } from 'typeorm';
-import { UserEntity } from '../users/user.entity.js';
+import { UserEntity } from '../users/user.entity';
 
 @Entity('shipping_addresses')
 export class ShippingAddress {

@@ -1,10 +1,10 @@
-import {
+ import {
   Entity, PrimaryGeneratedColumn, Column, ManyToOne,
   OneToMany, JoinColumn, CreateDateColumn, UpdateDateColumn,
 } from 'typeorm';
-import { UserEntity } from '../users/user.entity.js';
-import { OrderItem } from '../orders//order-item.entity.js';
-import type { UserModule } from '../users/user.module.js';
+import { UserEntity } from '../users/user.entity';
+import { OrderItem } from './order-item.entity';
+
 
 export enum OrderStatus {
   PENDING = 'pending',

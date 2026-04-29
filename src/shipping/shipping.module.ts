@@ -1,8 +1,8 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { ShippingAddress } from '../shipping/shipping-address.entity.js';
-import { ShippingService } from '../shipping//shipping.service.js';
-import { ShippingController } from '../shipping/shipping.controller.js';
+import { ShippingAddress } from './shipping-address.entity';
+import { ShippingService } from './shipping.service';
+import { ShippingController } from './shipping.controller';
 
 @Module({
   imports: [TypeOrmModule.forFeature([ShippingAddress])],

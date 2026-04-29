@@ -1,13 +1,13 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository, Between } from 'typeorm';
-import { OrderEntity, OrderStatus } from '../orders/order.entity.js';
-import { OrderItem } from '../orders/order-item.entity.js';
-import { UserEntity } from '../users/user.entity.js';
-import { ProductEntity } from '../products/product.entity.js';
-import { OrderService } from '../orders/order.service.js';
-import { UserService } from '../users/user.service.js';
-import { UpdateOrderStatusDto } from '../orders/order.dto.js';
+import { OrderEntity, OrderStatus } from '../orders/order.entity';
+import { OrderItem } from '../orders/order-item.entity';
+import { UserEntity } from '../users/user.entity';
+import { ProductEntity } from '../products/product.entity';
+import { OrderService } from '../orders/order.service';
+import { UserService } from '../users/user.service';
+import { UpdateOrderStatusDto } from '../orders/order.dto';
 
 @Injectable()
 export class AdminService {

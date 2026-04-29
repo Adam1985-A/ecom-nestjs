@@ -2,8 +2,8 @@ import {
   Entity, PrimaryGeneratedColumn, Column,
   ManyToOne, JoinColumn, CreateDateColumn, UpdateDateColumn,
 } from 'typeorm';
-import { UserEntity } from '../users/user.entity.js';
-import { ProductEntity } from '../products/product.entity.js';
+import { UserEntity } from '../users/user.entity';
+import { ProductEntity } from '../products/product.entity';
 
 @Entity('reviews')
 export class ReviewEntity {

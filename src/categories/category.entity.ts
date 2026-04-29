@@ -2,7 +2,7 @@ import {
   Entity, PrimaryGeneratedColumn, Column,
   CreateDateColumn, UpdateDateColumn, OneToMany,
 } from 'typeorm';
-import { ProductEntity } from '../products/product.entity.js';
+import { ProductEntity } from '../products/product.entity';
 
 @Entity('categories')
 export class CategoryEntity {

@@ -2,22 +2,24 @@ import {
   Controller, Get, Post, Patch, Delete,
   Body, Param, Query, UseGuards,
 } from '@nestjs/common';
-import { CreateProductDto, UpdateProductDto, ProductQueryDto } from '../products/product.dto.js';
-import { ProductService } from './product.service.js';
-import { JwtAuthGuard } from '../common/jwt-auth.guard.js';
-import { RolesGuard } from '../common/role.guard.js';
-import { RoleDecorator } from '../common/role.decorator.js';
+import { CreateProductDto, UpdateProductDto, ProductQueryDto } from './product.dto';
+import { ProductService } from './product.service';
+import { JwtAuthGuard } from '../common/jwt-auth.guard';
+import { RolesGuard } from '../common/role.guard';
+import { RoleDecorator } from '../common/role.decorator';
 
 @Controller('products')
 export class ProductController {
   constructor(private productService: ProductService) {}
 
  @Get()
+ @UseGuards(JwtAuthGuard, RolesGuard)
   findAll(@Query() query: ProductQueryDto) {
     return this.productService.findAll(query);
   }
 
   @Get(':id')
+  @UseGuards(JwtAuthGuard, RolesGuard)
   findOne(@Param('id') id: string) {
     return this.productService.findOne(id);
   }

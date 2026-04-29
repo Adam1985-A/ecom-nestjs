@@ -1,6 +1,6 @@
 import { Entity, PrimaryGeneratedColumn, Column, CreateDateColumn, UpdateDateColumn, OneToMany, JoinColumn, ManyToOne} from "typeorm";
-import { CategoryEntity} from "../categories/category.entity.js";
-import { ReviewEntity } from "../reviews/review.entity.js";
+import { CategoryEntity} from "../categories/category.entity";
+import { ReviewEntity } from "../reviews/review.entity";
 
 @Entity()
 export class ProductEntity{
