@@ -38,17 +38,15 @@ import { DatabaseService } from '../database/database-service';
     TypeOrmModule.forRoot({
         
        type: 'postgres',
-        host: 'localhost',
-        port: 5432,
-        username: 'postgres',
-        password: 'saidat1985',
-        database: 'ecom-nestjs',
+        url: process.env.DATABASE_URL!,
+         ssl: { rejectUnauthorized: false },
+    
         entities: [
           UserEntity, ProductEntity, CategoryEntity, CartEntity, CartItem,
           OrderEntity, OrderItem, PaymentEntity, ReviewEntity, WishlistItem, ShippingAddress,
         ],
         autoLoadEntities: true,
-        synchronize: true,
+        synchronize: process.env.NODE_ENV !== 'production',
         logging: false,
       }),
   
