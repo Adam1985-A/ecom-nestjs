@@ -13,6 +13,7 @@ import { WishlistModule } from '../wishlist/wishlist.module';
 import { ShippingModule } from '../shipping/shipping.module';
 import { AdminModule } from '../admin/admin.module';
 import { DatabaseModule } from './database.module';
+import { RolesGuard } from '../common/role.guard';
 
 // Entities
 import { UserEntity } from '../users/user.entity';
@@ -46,7 +47,7 @@ import { DatabaseService } from '../database/database-service';
           OrderEntity, OrderItem, PaymentEntity, ReviewEntity, WishlistItem, ShippingAddress,
         ],
         autoLoadEntities: true,
-        synchronize: process.env.NODE_ENV !== 'production',
+        synchronize: true,
         logging: false,
       }),
   
@@ -62,6 +63,6 @@ import { DatabaseService } from '../database/database-service';
     ShippingModule,
     AdminModule,
   ],
-  providers: [DatabaseService],
+  providers: [DatabaseService, RolesGuard],
 })
 export class AppModule {}

@@ -29,17 +29,34 @@ export class AuthService{
      }
 
      async login(email: string, password: string){
+
+         if (!email || !password) {
+    throw new UnauthorizedException('Email and password required');
+         }
+
         const user = await this.userService.findByEmail(email);
-        if(!user || !(await bcrypt.compare(password, user.password))){
-            throw new UnauthorizedException("Invalid Credential");
+       
+        if (!user || !user.password) {
+    throw new UnauthorizedException('Invalid Credential');
+  }
 
-        }
-        return {
-        access_token: this.JwtService.sign({ sub: user.id, email: user.email}),
-     };
+  const isMatch = await bcrypt.compare(password, user.password);
 
-    
+  if (!isMatch) {
+    throw new UnauthorizedException('Invalid Credential');
+  } 
+       if (!user || !user.password) {
+    throw new UnauthorizedException('Invalid Credential');
+  }
 
-     }   
+
+  return {
+    access_token: this.JwtService.sign({
+      sub: user.id,
+      email: user.email,
+      role: user.role, // 👈 add this (important for your 403 issue earlier)
+    }),
+  };
+}     
      
 };

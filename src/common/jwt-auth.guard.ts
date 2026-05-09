@@ -13,11 +13,12 @@ export class JwtAuthGuard extends AuthGuard('jwt') {
       IS_PUBLIC_KEY,
       [
         context.getHandler(),
-        context.getHandler(),
+        context.getClass(),
       ],
     );
 
     //if route is public skip auth
+
     if(isPublic){
       return true;
     }

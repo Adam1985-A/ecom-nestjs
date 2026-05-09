@@ -3,6 +3,8 @@ import { AppModule } from './module/app.module';
 import { JwtAuthGuard } from './common/jwt-auth.guard';
 import { Reflector } from '@nestjs/core';
 import { ValidationPipe } from '@nestjs/common';
+import { RolesGuard } from './common/role.guard';
+
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -20,8 +22,10 @@ async function bootstrap() {
   
 
   const reflector = app.get(Reflector); // ✅ get instance
-  app.useGlobalGuards(new JwtAuthGuard(reflector)); // ✅ pass instance
-
+  app.useGlobalGuards(
+    new JwtAuthGuard(reflector),
+    app.get(RolesGuard), // ✅ pass instance
+  );
   await app.listen(process.env.PORT || 3000);
   console.log(`Server running on http://localhost:3000/api/v1`);
 }

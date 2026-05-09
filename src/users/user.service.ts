@@ -17,7 +17,9 @@ return this.repo.save(user);
 }
 
 findByEmail(email: string){
-    return this.repo.findOne({ where: {email}});
+    return this.repo.findOne({ where: {email},
+         select: ['id', 'email', 'password', 'role'], 
+    });
 
 }
 
