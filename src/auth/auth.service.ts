@@ -36,6 +36,7 @@ export class AuthService{
 
         const user = await this.userService.findByEmail(email);
        
+       
         if (!user || !user.password) {
     throw new UnauthorizedException('Invalid Credential');
   }
