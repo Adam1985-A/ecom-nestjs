@@ -35,6 +35,7 @@ export class AuthService{
          }
 
         const user = await this.userService.findByEmail(email);
+        console.log('USER FROM DB =>', user);
        
        
         if (!user || !user.password) {
@@ -58,6 +59,9 @@ export class AuthService{
       role: user.role, // 👈 add this (important for your 403 issue earlier)
     }),
   };
+
+  
+
 }     
      
 };
