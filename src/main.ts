@@ -26,6 +26,7 @@ async function bootstrap() {
     new JwtAuthGuard(reflector),
     app.get(RolesGuard), // ✅ pass instance
   );
+  console.log('NEW CODE DEPLOYED SUCCESSFULLY');
   await app.listen(process.env.PORT || 3000);
   console.log(`Server running on http://localhost:3000/api/v1`);
 }
