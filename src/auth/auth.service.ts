@@ -29,7 +29,7 @@ export class AuthService{
      }
 
     async login(email: string, password: string) {
-      console.log('LOGIN METHOD HIT');
+      console.log('LOGIN METHODS HIT');
 
   if (!email || !password) {
     throw new UnauthorizedException('Email and password required');
