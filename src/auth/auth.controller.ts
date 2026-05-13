@@ -1,4 +1,4 @@
-import { Controller, Post, Get, Body, UseGuards } from "@nestjs/common";
+import { Controller, Post, Get, Body, UseGuards, UnauthorizedException } from "@nestjs/common";
 import { AuthService } from "./auth.service";
 import { JwtAuthGuard } from "../common/jwt-auth.guard"; 
 import { GetUser } from "../common/get-user.decorator";
@@ -19,8 +19,7 @@ export class AuthController{
     @Post("login")
     @Public()
     login(@Body() body: any){
-     console.log('AUTH CONTROLLER LOGIN HIT'); 
-        return this.authService.login(body.email, body.password)
+     throw new UnauthorizedException('Login Route Hit');
     }
 
     // ✅ ADD THIS
