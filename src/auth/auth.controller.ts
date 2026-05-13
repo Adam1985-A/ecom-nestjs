@@ -19,7 +19,7 @@ export class AuthController{
     @Post("login")
     @Public()
     login(@Body() body: any){
-    throw new UnauthorizedException('LOGIN ROUTE HIT');
+    return this.authService.login(body.email, body.password)
     }
 
     // ✅ ADD THIS
