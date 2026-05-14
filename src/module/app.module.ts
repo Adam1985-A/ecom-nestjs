@@ -47,7 +47,7 @@ import { DatabaseService } from '../database/database-service';
           OrderEntity, OrderItem, PaymentEntity, ReviewEntity, WishlistItem, ShippingAddress,
         ],
         autoLoadEntities: true,
-        synchronize: false,
+        synchronize: true,
         logging: false,
       }),
   
