@@ -1,4 +1,4 @@
-import { Controller, Post, Get, Body, UseGuards, UnauthorizedException } from "@nestjs/common";
+import { Controller, Post, Get, Body, UseGuards, req,  UnauthorizedException } from "@nestjs/common";
 import { AuthService } from "./auth.service";
 import { JwtAuthGuard } from "../common/jwt-auth.guard"; 
 import { GetUser } from "../common/get-user.decorator";
@@ -26,6 +26,6 @@ export class AuthController{
   @Get("me")
   @UseGuards(JwtAuthGuard)
   getMe(@GetUser() user: any) {
-    return user;
+    return req.user;
   }
 }

@@ -23,8 +23,11 @@ findByEmail(email: string){
 
 }
 
-findById(id: string){
-    const user = this.repo.findOne({ where: {id}});
+async findById(id: string): Promise<UserEntity> {
+    const user = await this.repo.findOne({ 
+        where: {id},
+    select: [ 'id', 'email', 'role', 'isActive' ], 
+});
     if(!user){
         throw new UnauthorizedException("user not found");
     }
@@ -46,7 +49,9 @@ findById(id: string){
 
 
 findAll(){
-    return this.repo.find({ select: ['id', 'email', 'name', 'role', 'isActive', 'createdAt']});
+    return this.repo.find({ 
+    select: ['id', 'email', 'name', 'role', 'isActive', 'createdAt'],
+});
 
 }
 
