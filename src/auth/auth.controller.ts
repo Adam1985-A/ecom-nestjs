@@ -24,8 +24,9 @@ export class AuthController{
 
     // ✅ ADD THIS
   @Get("me")
+
   @UseGuards(JwtAuthGuard)
-  getMe(@GetUser() user: any) {
+  getMe(@Req() req: any) {
     return req.user;
   }
 }
