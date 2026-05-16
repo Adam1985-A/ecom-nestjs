@@ -7,6 +7,7 @@ import { RolesGuard } from './common/role.guard';
 
 
 async function bootstrap() {
+  console.log(process.env.DB_DATABASE);
   const app = await NestFactory.create(AppModule);
   
 
