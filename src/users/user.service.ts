@@ -11,8 +11,8 @@ export class UserService {
         
     ) {}
 
-create(name: string, email: string, password: string){
-const user = this.repo.create({ name, email, password})
+create(name: string, email: string, password: string, role: UserRole = UserRole.CUSTOMER){
+const user = this.repo.create({ name, email, password, role})
 return this.repo.save(user);
 }
 
