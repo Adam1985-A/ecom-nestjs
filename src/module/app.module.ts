@@ -40,8 +40,7 @@ import { DatabaseService } from '../database/database-service';
     TypeOrmModule.forRoot({
         
       type: 'postgres',
-      port: Number(process.env.DB_PORT),
-      url: process.env.DATABASE_URL,
+      url: process.env.DATABASE_URL!,
  
 
   ssl: {
