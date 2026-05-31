@@ -21,7 +21,10 @@ export class PaymentService {
     private configService: ConfigService,
   ) {
     this.paystackSecret = this.configService.get<string>('PAYSTACK_SECRET_KEY')!;
-    this.paystackBaseUrl = this.configService.get<string>('PAYSTACK_BASE_URL!', 'https://api.paystack.co');
+
+    console.log('PAYSTACK SECRET =>', this.paystackSecret);
+    
+    this.paystackBaseUrl = this.configService.get<string>('PAYSTACK_BASE_URL', 'https://api.paystack.co');
   }
 
   async initialize(userId: string, dto: InitializePaymentDto) {
