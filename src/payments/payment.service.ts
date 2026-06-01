@@ -23,7 +23,9 @@ export class PaymentService {
     this.paystackSecret = this.configService.get<string>('PAYSTACK_SECRET_KEY')!;
 
     console.log('PAYSTACK SECRET =>', this.paystackSecret);
-    
+    console.log('PAYSTACK SECRET =>', this.paystackSecret?.substring(0, 10));
+    console.log('PAYSTACK BASE URL =>', this.paystackBaseUrl);
+
     this.paystackBaseUrl = this.configService.get<string>('PAYSTACK_BASE_URL', 'https://api.paystack.co');
   }
 
@@ -53,6 +55,9 @@ export class PaymentService {
     });
 
     const data = await response.json() as any;
+
+console.log('PAYSTACK RESPONSE =>', data);
+
     if (!data.status) throw new BadRequestException(data.message || 'Payment initialization failed');
 
     // Save payment record
