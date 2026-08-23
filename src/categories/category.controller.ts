@@ -31,6 +31,7 @@ findOne(@Param('id') id: string) {
   @UseGuards(JwtAuthGuard, RolesGuard)
   @RoleDecorator('admin')
   create(@Body() dto: CreateCategoryDto) {
+    console.log(req.user);
     return this.categoriesService.create(dto);
   }
 

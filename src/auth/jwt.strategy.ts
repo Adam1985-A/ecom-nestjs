@@ -31,10 +31,15 @@ export class JwtStrategy extends PassportStrategy(Strategy, 'jwt') {
       throw new UnauthorizedException('Invalid token');
 
     }
-    return {
+     const validatedUser = {
     id: user.id,
     email: user.email,
-    role: user.role, // 🔥 FORCE role from database
+    role: user.role,
   };
-  }
+
+  console.log('VALIDATE RETURN =>', validatedUser);
+
+  return validatedUser;
+}
+
 }
